@@ -5,7 +5,7 @@
 Go to backend directory and run from terminal `npm install`
 
 #### Run
-node server.js
+`node server.js`
 
 ## Frontend
 #### Install 
