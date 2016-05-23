@@ -1,0 +1,22 @@
+{
+  "name": "EasySend",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/clearmediapl/beewits/src/8463849b4949?at=master"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-htmlmin": "^1.4.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-include-source": "^0.7.1",
+    "grunt-wiredep": "^3.0.1"
+  },
+  "engines": {
+    "node": "^5.7.1"
+  }
+}

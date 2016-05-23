@@ -1,0 +1,23 @@
+{
+  "name": "itmore",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "^1.5.x",
+    "bootstrap-sass-official": "^3.2.0",
+    "angular-route": "^1.5.5",
+    "angular-sanitize": "^1.5.5",
+    "angular-touch": "^1.5.5",
+    "angular-material": "^1.0.8"
+  },
+  "appPath": "app",
+  "moduleName": "itmoreApp",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+/node_modules
+/.sass-cache
+/app/styles/.sass-cache
+/app/bower_components
+/build/bower_components
+/build/img
+/build/scripts
+/build/styles
+/build/views
+/bower_components
