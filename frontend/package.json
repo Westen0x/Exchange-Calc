@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/clearmediapl/beewits/src/8463849b4949?at=master"
+    "url": "https://github.com/Westen0x/Exchange-Calc"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
