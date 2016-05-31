@@ -1,79 +1,85 @@
 'use strict';
 
-var express = require('express');
-var app = express();
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-app.use(bodyParser.json(), function(req, res, next) {
+app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Content-Type", "application/json");
     next();
 });
 
-app.get('/countries', function(req, res) {
-    let xhr = new XMLHttpRequest();
-
-    xhr.open("GET", "https://www.easysend.pl/api/calculator/countries", false);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send();
-
-    if (xhr.status === 200) {
-        res.send(xhr.responseText);
-    } else {
-        res.send(status);
-    }
+app.get('/countries', (req, res) => {
+    res.send(get_response("GET", "https://www.easysend.pl/api/calculator/countries"));
 });
 
-app.post('/countries/destinations', function(req, res) {
-    let data = req.body;
-    let xhr = new XMLHttpRequest();
+app.get('/countries/destinations', (req, res) => {
+  let countryIn = req.param("countryIn");
 
-    xhr.open("GET", "https://www.easysend.pl/api/calculator/countries/" + data.countryIn + "/destinations", false);
-    xhr.setRequestHeader("Content-Type", "application/json");
+  if(countryIn !== undefined) {
+    /*
+      I know that "Easy Send" API return correctly error if we send undefined parameter,
+      but I think it's better to not fully trust third-party code :)
+    */
+    let message = get_response("GET", "https://www.easysend.pl/api/calculator/countries/" + countryIn + "/destinations");
 
-    xhr.send();
-
-    if (xhr.status === 200) {
-        res.send(xhr.responseText);
+    if (message.error) {
+      res.sendStatus(message.error.code)
     } else {
-        res.send(status);
+      res.send(message);
     }
+  } else {
+    res.sendStatus(400);
+  }
 });
 
-app.post('/currencies', function(req, res) {
-    let data = req.body;
-    let xhr = new XMLHttpRequest();
-    console.log(data);
+app.post('/currencies', (req, res) => {
+  let countryIn = req.params("countryIn");
+  let countryOut = req.params("countryOut");
 
-    xhr.open("GET", "https://www.easysend.pl/api/calculator/currencies/" + data.countryIn + "/" + data.countryOut, false);
-    xhr.setRequestHeader("Content-Type", "application/json");
+  if (countryIn !== undefined && countryOut !== undefined) {
+    let message = get_response("GET", "https://www.easysend.pl/api/calculator/currencies/" + countryIn + "/" + countryOut);
 
-    xhr.send();
-
-    if (xhr.status === 200) {
-        console.log(xhr.responseText);
-        res.send(xhr.responseText);
+    if (message.error) {
+      res.sendStatus(message.error.code)
     } else {
-        res.send(status);
+      res.send(message);
     }
+  } else {
+    res.sendStatus(400);
+  }
 });
 
-app.post('/exchange-rate', function(req, res) {
-    let data = req.body;
-    let xhr = new XMLHttpRequest();
+app.post('/exchange-rate', (req, res) => {
+  let currencyIn = req.params("currencyIn");
+  let currencyOut = req.params("currencyOut");
 
-    xhr.open("GET", "https://www.easysend.pl/api/calculator/exchange-rate/" + data.currencyIn + "/" + data.currencyOut + "/1", false);
-    xhr.setRequestHeader("Content-Type", "application/json");
+  if (currencyIn !== undefined && currencyOut !== undefined) {
+    let message = get_response("GET", "https://www.easysend.pl/api/calculator/exchange-rate/" + currencyIn + "/" + currencyOut + "/1");
 
-    xhr.send();
-
-    if (xhr.status === 200) {
-        console.log(xhr.responseText);
-        res.send(xhr.responseText);
+    if (message.error) {
+      res.sendStatus(message.error.code)
     } else {
-        res.send(status);
+      res.send(message);
     }
+  } else {
+    res.sendStatus(400);
+  }
+
 });
 
-app.listen(3000, console.log('Server run on http://localhost:3000'));
+app.listen(8443, console.log('Server run on http://localhost:8443'));
+
+function get_response(type, url) {
+  let xhr = new XMLHttpRequest();
+
+  xhr.open(type, url, false);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.send();
+
+  return xhr.responseText;
+
+}

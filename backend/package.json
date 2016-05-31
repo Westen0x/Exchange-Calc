@@ -1,16 +1,14 @@
 {
   "name": "Currency_calculator",
   "version": "0.0.1",
-  "description": "BeeWits backend engine",
   "dependencies": {
-    "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "xmlhttprequest": "^1.8.0"
   },
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/anonymous node/sails user/app.git"
+    "url": "https://github.com/Westen0x/Exchange-Calc/tree/master/backend"
   },
   "author": "Kamil Orzełek"
 }
