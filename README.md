@@ -5,7 +5,7 @@
 * Globally installed [Grunt](http://gruntjs.com/getting-started#installing-the-cli)
 
 
-## Backend 
+## Backend
 #### Install
 Go to backend directory and run from terminal `npm install`
 
@@ -13,7 +13,6 @@ Go to backend directory and run from terminal `npm install`
 `node server.js`
 
 ## Frontend
-#### Install 
+#### Install
 Go to frontend directory and run from terminal `npm install` after that  `grunt build-dev`.
 If u want build production app type in ur terminal `grunt build-prod`
-

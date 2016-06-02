@@ -63,16 +63,16 @@
 <div class="col-xs-12 text-center m-t-30 ">
   <div class="col-xs-12 shipping">
     <span class="col-xs-12 f-2 pad-15">Wybierz czas dostarczenia</span>
-    <md-radio-group class="md-primary">
+    <md-radio-group ng-model="type_exchange" class="md-primary">
       <div class="col-sm-6 col-xs-12 pad-15">
-        <div class="col-xs-12 md-checked">
-          <md-radio-button ng-checked="true" checked="checked">Przelew FAST<br/>10 PLN</md-radio-button>
+        <div class="col-xs-12">
+          <md-radio-button value=0>Przelew FAST<br/>10 PLN</md-radio-button>
         </div>
       </div>
       <div class="col-sm-6 col-xs-12 pad-15">
         <div class="col-xs-12">
           <div class="gray-mask" ng-show="!currency_in_out.super_fast_available"></div>
-          <md-radio-button ng-value="12">Przelew SUPERFAST<br/>20 PLN</md-radio-button>
+          <md-radio-button value=1>Przelew SUPERFAST<br/>20 PLN</md-radio-button>
         </div>
       </div>
     </md-radio-group>

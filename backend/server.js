@@ -35,9 +35,11 @@ app.get('/countries/destinations', (req, res) => {
   }
 });
 
-app.post('/currencies', (req, res) => {
-  let countryIn = req.params("countryIn");
-  let countryOut = req.params("countryOut");
+app.get('/currencies', (req, res) => {
+  let countryIn = req.param("countryIn");
+  let countryOut = req.param("countryOut");
+
+  console.log();
 
   if (countryIn !== undefined && countryOut !== undefined) {
     let message = get_response("GET", "https://www.easysend.pl/api/calculator/currencies/" + countryIn + "/" + countryOut);
@@ -52,9 +54,9 @@ app.post('/currencies', (req, res) => {
   }
 });
 
-app.post('/exchange-rate', (req, res) => {
-  let currencyIn = req.params("currencyIn");
-  let currencyOut = req.params("currencyOut");
+app.get('/exchange-rate', (req, res) => {
+  let currencyIn = req.param("currencyIn");
+  let currencyOut = req.param("currencyOut");
 
   if (currencyIn !== undefined && currencyOut !== undefined) {
     let message = get_response("GET", "https://www.easysend.pl/api/calculator/exchange-rate/" + currencyIn + "/" + currencyOut + "/1");

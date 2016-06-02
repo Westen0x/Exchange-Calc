@@ -1,5 +1,5 @@
 {
-  "name": "itmore",
+  "name": "Exchange",
   "version": "0.0.1",
   "dependencies": {
     "angular": "^1.5.x",
@@ -9,15 +9,5 @@
     "angular-touch": "^1.5.5",
     "angular-material": "^1.0.8"
   },
-  "appPath": "app",
-  "moduleName": "itmoreApp",
-  "overrides": {
-    "bootstrap": {
-      "main": [
-        "less/bootstrap.less",
-        "dist/css/bootstrap.css",
-        "dist/js/bootstrap.js"
-      ]
-    }
-  }
+  "appPath": "app"
 }

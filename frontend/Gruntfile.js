@@ -9,10 +9,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-wiredep');
+    grunt.loadNpmTasks('grunt-browser-sync');
 
 
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
         sass: {
             dev: {
                 files: [{
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                 src: ['app/index.html'],
 
                 options: {
-                  directory: 'app/bower_components'
+                    directory: 'app/bower_components'
                 }
             },
 
@@ -48,13 +48,12 @@ module.exports = function(grunt) {
                 src: ['build/index.html'],
 
                 options: {
-                  directory: 'build/bower_components'
+                    directory: 'build/bower_components'
                 }
             }
         },
 
         concat: {
-
             prod: {
                 src: ['app/scripts/**/*.js'],
                 dest: 'build/scripts/main.js'
@@ -67,12 +66,12 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'app/bower_components',
                     src: '**',
-                    dest: 'build/bower_components',
+                    dest: 'build/bower_components'
                 }, {
                     expand: true,
                     cwd: 'app/img',
                     src: '**',
-                    dest: 'build/img',
+                    dest: 'build/img'
                 }]
             },
 
@@ -81,7 +80,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'bower_components',
                     src: '**',
-                    dest: 'app/bower_components',
+                    dest: 'app/bower_components'
                 }]
             },
         },
@@ -119,9 +118,31 @@ module.exports = function(grunt) {
                 files: '**/*.scss',
                 tasks: ['sass:dev']
             }
+        },
+
+        browserSync: {
+            prod: {
+                options: {
+                    server: {
+                        baseDir: "build/"
+                    }
+                }
+            },
+
+            dev: {
+                bsFiles: {
+                    src: ['app/styles/*.css', 'app/views/**/*.html', 'app/*.html']
+                },
+                options: {
+                    server: {
+                        baseDir: "app/"
+                    }
+                }
+            }
         }
     });
-    grunt.registerTask('build-prod', ['htmlmin:prod', 'sass:prod', 'copy:prod', 'concat:prod', 'wiredep:prod']);
+    grunt.registerTask('build-prod', ['htmlmin:prod', 'sass:prod', 'copy:prod', 'concat:prod', 'wiredep:prod', 'browserSync:prod']);
     grunt.registerTask('build-dev', ['bower', 'copy:dev', 'wiredep:dev']);
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('run-server', ['browserSync:dev']);
+    grunt.registerTask('watch-sass', ['watch:css']);
 };

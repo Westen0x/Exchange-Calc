@@ -1,5 +1,5 @@
 {
-  "name": "Currency_calculator",
+  "name": "Exchange",
   "version": "0.0.1",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-include-source": "^0.7.1",
-    "grunt-wiredep": "^3.0.1"
+    "grunt-wiredep": "^3.0.1",
   },
   "engines": {
     "node": "^5.7.1"

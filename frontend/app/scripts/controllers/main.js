@@ -5,6 +5,7 @@ angular.module('app')
         //Var
         $scope.currency_in_val = "100.00";
         $scope.currency_out_val = "";
+        $scope.type_exchange = 0;
 
 
         $scope.$watch('currency_in_val', function(newVal, oldVal) {
@@ -36,7 +37,8 @@ angular.module('app')
 
         $scope.$watch('currency_in_out', function(newVal, oldVal) {
             if (oldVal !== undefined && newVal !== oldVal) {
-                get_exchange_rate(newVal.currency_in.name, newVal.currency_out.name);
+              $scope.type_exchange = 0;
+              get_exchange_rate(newVal.currency_in.name, newVal.currency_out.name);
             }
         });
 
