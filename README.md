@@ -16,3 +16,6 @@ Go to backend directory and run from terminal `npm install`
 #### Install
 Go to frontend directory and run from terminal `npm install` after that  `grunt build-dev`.
 If u want build production app type in ur terminal `grunt build-prod`
+
+#### Run
+`grunt watch-html'
